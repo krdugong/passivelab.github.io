@@ -92,9 +92,16 @@ nav{
 .cta-sub{font-size:18px;color:var(--gray);margin-bottom:44px;font-weight:300;}
 
 /* FOOTER */
-footer{padding:36px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+footer{padding:40px 48px 0;border-top:1px solid var(--border);background:var(--bg);}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:32px;gap:24px;flex-wrap:wrap;}
 .footer-logo{font-size:14px;font-weight:800;letter-spacing:0.06em;color:var(--black);text-transform:uppercase;}
+.footer-address{font-size:12px;color:var(--muted);line-height:1.8;}
 .footer-copy{font-size:12px;color:var(--muted);}
+.footer-map{width:100%;padding-bottom:40px;}
+@media(max-width:480px){
+  footer{padding:32px 16px 0;}
+  .footer-inner{flex-direction:column;gap:16px;}
+}
 
 /* LTK BANNER */
 .ltk-banner{
@@ -224,7 +231,7 @@ footer{padding:36px 48px;border-top:1px solid var(--border);display:flex;justify
     </h1>
     <p class="hero-sub" data-en="Every major market has a gateway. In Korea, we are it." data-ja="すべての主要市場には入口がある。韓国では、それが私たちです。" data-de="Jeder große Markt hat ein Eingangstor. In Korea sind wir es." data-ko="모든 주요 시장엔 관문이 있습니다. 한국에서 그 관문은 우리입니다." data-es="Todo mercado importante tiene una puerta de entrada. En Corea, esa puerta somos nosotros.">Every major market has a gateway. In Korea, we are it.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-fill" data-en="Partner With Us" data-ko="파트너십 알아보기" data-es="Sé Nuestro Socio" data-ja="パートナーになる" data-de="Partner werden">Partner With Us</a>
+      <a href="mailto:passivel.lab.official@gmail.com" class="btn-fill" data-en="Partner With Us" data-ko="파트너십 알아보기" data-es="Sé Nuestro Socio" data-ja="パートナーになる" data-de="Partner werden">Partner With Us</a>
     </div>
   </section>
 
@@ -294,8 +301,21 @@ footer{padding:36px 48px;border-top:1px solid var(--border);display:flex;justify
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">PASSIVELAB</div>
-    <div class="footer-copy">© 2017–2026 PASSIVELAB Inc. All rights reserved.</div>
+    <div class="footer-inner">
+      <div class="footer-logo">PASSIVELAB</div>
+      <div class="footer-address">
+        <div>12, Teheran-ro 70-gil, Gangnam-gu</div>
+        <div>Seoul, Republic of Korea 06193</div>
+        <div style="margin-top:4px;"><a href="mailto:passivel.lab.official@gmail.com" style="color:var(--muted);text-decoration:none;font-size:12px;">passivel.lab.official@gmail.com</a></div>
+      </div>
+      <div class="footer-copy">© 2017–2026 PASSIVELAB Inc. All rights reserved.</div>
+    </div>
+    <div class="footer-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.4!2d127.0495!3d37.5045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca415b0000001%3A0x0!2z7ISc7Jq47IqkIOqwleuCqOq1rCDthYztl6TroZwgNzDquLggMTI!5e0!3m2!1sko!2skr!4v1"
+        width="100%" height="200" style="border:0;border-radius:8px;opacity:0.85;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
   </footer>
 
 </div>
