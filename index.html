@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PASSIVELAB — Global Affiliate Agency</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#ffffff;
+  --surface:#f5f5f5;
+  --black:#111111;
+  --gray:#555555;
+  --muted:#999999;
+  --border:#e2e2e2;
+}
+body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--black);overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:56px;
+}
+.nav-logo{font-size:16px;font-weight:800;letter-spacing:0.06em;color:var(--black);text-transform:uppercase;}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:13px;color:var(--gray);text-decoration:none;letter-spacing:0.02em;transition:color 0.15s;}
+.nav-links a:hover{color:var(--black);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+
+.lang-toggle{display:flex;background:var(--surface);border-radius:20px;padding:3px;gap:2px;}
+.lang-btn{font-size:11px;font-weight:700;padding:5px 11px;border-radius:16px;border:none;cursor:pointer;background:transparent;color:var(--muted);transition:all 0.2s;letter-spacing:0.06em;}
+.lang-btn.active{background:var(--black);color:#fff;}
+
+.nav-cta{font-size:13px;font-weight:600;background:var(--black);color:#fff;padding:8px 18px;border-radius:6px;text-decoration:none;transition:opacity 0.2s;letter-spacing:0.02em;}
+.nav-cta:hover{opacity:0.75;}
+
+/* HERO */
+.hero{padding:168px 48px 88px;max-width:1280px;margin:0 auto;}
+.hero-eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;display:flex;align-items:center;gap:10px;font-weight:600;}
+.hero-eyebrow::before{content:'';width:28px;height:1.5px;background:var(--muted);}
+.hero h1{font-size:80px;font-weight:800;line-height:1.0;letter-spacing:-3.5px;color:var(--black);margin-bottom:28px;}
+.hero h1 .dim{color:#cccccc;}
+.hero-sub{font-size:19px;color:var(--gray);line-height:1.7;max-width:500px;margin-bottom:44px;font-weight:300;}
+.hero-btns{display:flex;gap:12px;}
+.btn-fill{background:var(--black);color:#fff;padding:14px 28px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;transition:opacity 0.2s;display:inline-block;}
+.btn-fill:hover{opacity:0.75;}
+.btn-outline{border:2px solid var(--black);color:var(--black);padding:14px 28px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;transition:all 0.2s;display:inline-block;}
+.btn-outline:hover{background:var(--black);color:#fff;}
+
+/* STATS */
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);}
+.stat-item{padding:44px 48px;border-right:1px solid var(--border);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-size:52px;font-weight:800;letter-spacing:-2px;color:var(--black);line-height:1;}
+.stat-label{font-size:13px;color:var(--gray);margin-top:8px;font-weight:500;}
+
+/* PARTNERS */
+.partners-sec{padding:100px 48px;max-width:1280px;margin:0 auto;}
+.sec-eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px;}
+.sec-title{font-size:46px;font-weight:800;letter-spacing:-2px;color:var(--black);margin-bottom:8px;}
+.sec-sub{font-size:16px;color:var(--gray);}
+.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;}
+.sec-link{font-size:13px;color:var(--black);text-decoration:none;font-weight:600;border-bottom:1.5px solid var(--black);padding-bottom:2px;white-space:nowrap;}
+
+.partner-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.partner-tile{padding:30px 28px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background 0.2s;}
+.partner-tile:hover{background:var(--surface);}
+.partner-tile:nth-child(4n){border-right:none;}
+.partner-tile:nth-last-child(-n+4){border-bottom:none;}
+.p-name{font-size:16px;font-weight:700;color:var(--black);}
+.p-cat{font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;}
+
+/* FEATURES */
+.features-sec{padding:100px 48px;background:var(--black);}
+.feat-inner{max-width:1280px;margin:0 auto;}
+.feat-eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-weight:600;margin-bottom:10px;}
+.feat-title{font-size:46px;font-weight:800;letter-spacing:-2px;color:#fff;margin-bottom:56px;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.feat-card{background:#1c1c1c;border-radius:10px;padding:44px 36px;border:1px solid rgba(255,255,255,0.07);}
+.feat-num{font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.3);margin-bottom:36px;font-weight:600;}
+.feat-name{font-size:21px;font-weight:700;color:#fff;margin-bottom:14px;}
+.feat-desc{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;}
+
+/* CTA */
+.cta-sec{padding:140px 48px;text-align:center;background:var(--surface);border-top:1px solid var(--border);}
+.cta-title{font-size:58px;font-weight:800;letter-spacing:-2.5px;color:var(--black);margin-bottom:16px;}
+.cta-sub{font-size:18px;color:var(--gray);margin-bottom:44px;font-weight:300;}
+
+/* FOOTER */
+footer{padding:36px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-size:14px;font-weight:800;letter-spacing:0.06em;color:var(--black);text-transform:uppercase;}
+.footer-copy{font-size:12px;color:var(--muted);}
+
+/* LTK BANNER */
+.ltk-banner{
+  margin-top:20px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:36px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+  background:var(--surface);
+}
+.ltk-badge{
+  display:inline-block;
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gray);border:1px solid var(--border);
+  padding:4px 10px;border-radius:4px;margin-bottom:12px;
+}
+.ltk-name{font-size:26px;font-weight:800;letter-spacing:-0.5px;color:var(--black);margin-bottom:10px;}
+.ltk-desc{font-size:14px;color:var(--gray);line-height:1.7;max-width:560px;}
+.ltk-stat{text-align:right;flex-shrink:0;}
+.ltk-num{font-size:52px;font-weight:800;letter-spacing:-2px;color:var(--black);line-height:1;}
+.ltk-statlabel{font-size:13px;color:var(--muted);margin-top:6px;font-weight:500;}
+
+@media(max-width:900px){
+  .ltk-banner{flex-direction:column;align-items:flex-start;padding:28px 24px;}
+  .ltk-stat{text-align:left;}
+}
+@media(max-width:480px){
+  .ltk-banner{padding:24px 16px;}
+  .ltk-num{font-size:40px;}
+}
+
+/* NETWORK GRAPH */
+.network-wrap{position:relative;width:100%;height:520px;border-radius:12px;overflow:hidden;background:var(--surface);border:1px solid var(--border);}
+#netCanvas{display:block;width:100%;height:100%;}
+#netTooltip{position:absolute;background:#111;color:#fff;padding:7px 11px;border-radius:5px;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity 0.1s;z-index:10;white-space:nowrap;}
+@media(max-width:480px){.network-wrap{height:380px;}}
+
+/* ── TABLET ── */
+@media(max-width:900px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  .hero{padding:120px 24px 60px;}
+  .hero h1{font-size:52px;letter-spacing:-2px;}
+  .hero-sub{font-size:16px;}
+  .stat-strip{grid-template-columns:1fr;}
+  .stat-item{border-right:none;border-bottom:1px solid var(--border);padding:32px 24px;}
+  .stat-item:last-child{border-bottom:none;}
+  .partners-sec{padding:64px 24px;}
+  .sec-title{font-size:34px;letter-spacing:-1px;}
+  .sec-header{flex-direction:column;align-items:flex-start;gap:16px;}
+  .partner-grid{grid-template-columns:repeat(2,1fr);}
+  .partner-tile:nth-child(4n){border-right:1px solid var(--border);}
+  .partner-tile:nth-child(2n){border-right:none;}
+  .partner-tile:nth-last-child(-n+4){border-bottom:1px solid var(--border);}
+  .partner-tile:nth-last-child(-n+2){border-bottom:none;}
+  .features-sec{padding:64px 24px;}
+  .feat-title{font-size:32px;letter-spacing:-1px;margin-bottom:36px;}
+  .feat-grid{grid-template-columns:1fr;}
+  .cta-sec{padding:80px 24px;}
+  .cta-title{font-size:38px;letter-spacing:-1.5px;}
+  .cta-sub{font-size:16px;}
+  footer{padding:28px 24px;flex-direction:column;gap:8px;text-align:center;}
+}
+
+/* ── MOBILE ── */
+@media(max-width:480px){
+  nav{padding:0 16px;height:52px;}
+  .nav-logo{font-size:14px;}
+  .nav-cta{padding:6px 12px;font-size:12px;}
+  .lang-btn{padding:4px 9px;font-size:10px;}
+  .hero{padding:100px 16px 48px;}
+  .hero h1{font-size:38px;letter-spacing:-1.5px;}
+  .hero-eyebrow{font-size:10px;letter-spacing:0.1em;}
+  .hero-sub{font-size:15px;max-width:100%;}
+  .btn-fill{padding:13px 22px;font-size:14px;width:100%;text-align:center;}
+  .stat-num{font-size:40px;}
+  .stat-label{font-size:12px;}
+  .partners-sec{padding:48px 16px;}
+  .sec-title{font-size:28px;}
+  .sec-sub{font-size:14px;}
+  .partner-grid{grid-template-columns:repeat(2,1fr);}
+  .p-name{font-size:14px;}
+  .features-sec{padding:48px 16px;}
+  .feat-title{font-size:26px;letter-spacing:-0.5px;}
+  .feat-card{padding:32px 24px;}
+  .feat-name{font-size:18px;}
+  .cta-sec{padding:64px 16px;}
+  .cta-title{font-size:30px;letter-spacing:-1px;}
+  .cta-sub{font-size:15px;}
+  footer{padding:24px 16px;flex-direction:column;gap:8px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">PASSIVELAB</div>
+  <div class="nav-links">
+    <a href="#partners" data-en="Partners" data-ko="파트너" data-es="Socios" data-ja="パートナー" data-de="Partner">Partners</a>
+    <a href="#why" data-en="Services" data-ko="서비스" data-es="Servicios" data-ja="サービス" data-de="Leistungen">Services</a>
+    <a href="#" data-en="About" data-ko="회사 소개" data-es="Nosotros" data-ja="会社概要" data-de="Über uns">About</a>
+    <a href="#" data-en="Insights" data-ko="인사이트" data-es="Insights" data-ja="インサイト" data-de="Insights">Insights</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('ko')">KO</button>
+      <button class="lang-btn" onclick="setLang('ja')">JA</button>
+      <button class="lang-btn" onclick="setLang('de')">DE</button>
+    </div>
+  </div>
+</nav>
+
+<div style="padding-top:56px;">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow" data-en="Korea's First-Generation Affiliate Agency" data-ja="韓国初世代アフィリエイトエージェンシー" data-de="Koreas Affiliate-Agentur der ersten Generation" data-ko="대한민국 1세대 어필리에이트 에이전시" data-es="Agencia de Afiliados de Primera Generación en Corea">Korea's First-Generation Affiliate Agency</div>
+    <h1>
+      <span data-en="Connecting" data-ko="연결합니다" data-es="Conectamos" data-ja="繋ぐ" data-de="Verbindet">Connecting</span><br>
+      <span class="dim" data-en="Global Brands" data-ko="글로벌 브랜드를" data-es="Marcas Globales" data-ja="グローバルブランドを" data-de="Globale Marken">Global Brands</span><br>
+      <span data-en="to Korea." data-ko="한국 시장과." data-es="con Corea." data-ja="韓国市場と。" data-de="mit Korea.">to Korea.</span>
+    </h1>
+    <p class="hero-sub" data-en="Every major market has a gateway. In Korea, we are it." data-ja="すべての主要市場には入口がある。韓国では、それが私たちです。" data-de="Jeder große Markt hat ein Eingangstor. In Korea sind wir es." data-ko="모든 주요 시장엔 관문이 있습니다. 한국에서 그 관문은 우리입니다." data-es="Todo mercado importante tiene una puerta de entrada. En Corea, esa puerta somos nosotros.">Every major market has a gateway. In Korea, we are it.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-fill" data-en="Partner With Us" data-ko="파트너십 알아보기" data-es="Sé Nuestro Socio" data-ja="パートナーになる" data-de="Partner werden">Partner With Us</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="stat-num">100+</div>
+      <div class="stat-label" data-en="Global Partner Brands" data-ko="글로벌 파트너 브랜드" data-es="Marcas Socias Globales" data-ja="グローバルパートナーブランド" data-de="Globale Partnermarken">Global Partner Brands</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">#1</div>
+      <div class="stat-label" data-en="Affiliate Agency in Korea" data-ko="국내 1위 어필리에이트 에이전시" data-es="Agencia de Afiliados N°1 en Corea" data-ja="韓国No.1アフィリエイトエージェンシー" data-de="Affiliate-Agentur Nr. 1 in Korea">Affiliate Agency in Korea</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">1st Gen</div>
+      <div class="stat-label" data-en="Specialized in Global Brands" data-ko="해외기업 전문" data-es="Especialistas en Marcas Globales" data-ja="グローバルブランド専門" data-de="Spezialisiert auf globale Marken">Specialized in Global Brands</div>
+    </div>
+  </div>
+
+  <!-- PARTNERS -->
+  <section class="partners-sec" id="partners">
+    <div class="sec-header">
+      <div>
+        <div class="sec-eyebrow" data-en="Our Partners" data-ko="파트너사" data-es="Nuestros Socios" data-ja="パートナー企業" data-de="Unsere Partner">Our Partners</div>
+        <div class="sec-title" data-en="Brands We Work With" data-ko="함께하는 기업들" data-es="Marcas con las que Trabajamos" data-ja="一緒に働くブランド" data-de="Marken, mit denen wir arbeiten">Brands We Work With</div>
+        <div class="sec-sub" data-en="World-class brands. Direct contracts. Real results." data-ko="세계 최고의 브랜드. 직접 계약. 실제 성과." data-es="Marcas de primer nivel. Contratos directos. Resultados reales." data-ja="世界クラスのブランド。直接契約。真の成果。" data-de="Weltklasse-Marken. Direkte Verträge. Echte Ergebnisse.">World-class brands. Direct contracts. Real results.</div>
+      </div>
+
+    </div>
+    <div class="network-wrap">
+      <canvas id="netCanvas"></canvas>
+      <div id="netTooltip"></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-sec" id="why">
+    <div class="feat-inner">
+      <div class="feat-eyebrow" data-en="Why PASSIVELAB" data-ko="왜 PASSIVELAB인가" data-es="Por qué PASSIVELAB" data-ja="なぜPASSIVELABか" data-de="Warum PASSIVELAB">Why PASSIVELAB</div>
+      <div class="feat-title" data-en="Built for Korea.<br>Specialized where it matters." data-ko="한국 시장을 위해 만들어졌습니다.<br>중요한 곳에 특화되어 있습니다." data-es="Construido para Corea.<br>Especializado donde importa." data-ja="韓国のために作られた。<br>重要なところに特化。" data-de="Für Korea gebaut.<br>Spezialisiert wo es zählt.">Built for Korea.<br>Specialized where it matters.</div>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-num">01</div>
+          <div class="feat-name" data-en="Travel &amp; Hospitality" data-ko="여행 및 호스피탈리티" data-es="Viajes y Hospitalidad" data-ja="旅行・ホスピタリティ" data-de="Reise &amp; Gastgewerbe">Travel &amp; Hospitality</div>
+          <div class="feat-desc" data-en="Korean travelers are among the highest-spending in Asia. We connect global travel and hospitality brands — hotels, airlines, cruises, experiences — to Korean consumers who are ready to book. Our affiliate network has driven bookings for Marriott, Hilton, KLM, CruiseDirect, and more." data-ko="한국 여행자는 아시아 최고 수준의 소비력을 보유하고 있습니다. 저희는 호텔, 항공, 크루즈, 액티비티 등 글로벌 여행 브랜드를 예약 준비가 된 한국 소비자와 연결합니다. Marriott, Hilton, KLM, CruiseDirect 등의 예약 성과를 직접 만들어왔습니다." data-es="Los viajeros coreanos están entre los de mayor gasto en Asia. Conectamos marcas globales de viajes y hospitalidad — hoteles, aerolíneas, cruceros, experiencias — con consumidores coreanos listos para reservar." data-ja="韓国の旅行者はアジアで最も消費額の高い層です。ホテル、航空会社、クルーズ、体験など、グローバルな旅行・ホスピタリティブランドを予約準備の整った韓国の消費者と繋げます。" data-de="Koreanische Reisende gehören zu den ausgabefreudigsten in Asien. Wir verbinden globale Reise- und Hospitality-Marken mit koreanischen Verbrauchern, die bereit sind zu buchen.">Korean travelers are among the highest-spending in Asia. We connect global travel and hospitality brands — hotels, airlines, cruises, experiences — to Korean consumers who are ready to book. Our affiliate network has driven bookings for Marriott, Hilton, KLM, CruiseDirect, and more.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">02</div>
+          <div class="feat-name" data-en="SaaS &amp; Digital Tools" data-ko="SaaS 및 디지털 툴" data-es="SaaS y Herramientas Digitales" data-ja="SaaSとデジタルツール" data-de="SaaS &amp; Digitale Tools">SaaS &amp; Digital Tools</div>
+          <div class="feat-desc" data-en="Korea has one of the world's highest rates of tech adoption — but breaking into it requires local trust, not just a translated landing page. We've built affiliate pipelines for cybersecurity, VPN, and productivity tools that convert in the Korean market where cold digital ads simply don't." data-ko="한국은 세계 최고 수준의 기술 수용률을 보유하고 있습니다. 하지만 진입하려면 단순 번역 랜딩페이지가 아닌 로컬 신뢰가 필요합니다. 저희는 사이버보안, VPN, 생산성 툴 등의 어필리에이트 파이프라인을 구축해 한국 시장에서 실제 전환을 만들어냅니다." data-es="Corea tiene una de las tasas de adopción tecnológica más altas del mundo. Hemos construido pipelines de afiliados para ciberseguridad, VPN y herramientas de productividad que convierten en el mercado coreano." data-ja="韓国は世界最高水準のテクノロジー導入率を誇ります。単なる翻訳ランディングページではなく、ローカルの信頼が必要です。私たちはサイバーセキュリティやVPNのアフィリエイトパイプラインを構築し、韓国市場で実際の成果を上げています。" data-de="Korea hat eine der höchsten Technologieakzeptanzraten der Welt. Der Markteintritt erfordert lokales Vertrauen, nicht nur eine übersetzte Landingpage. Wir haben Affiliate-Pipelines für Cybersecurity und VPN aufgebaut, die im koreanischen Markt konvertieren.">Korea has one of the world's highest rates of tech adoption — but breaking into it requires local trust, not just a translated landing page. We've built affiliate pipelines for cybersecurity, VPN, and productivity tools that convert in the Korean market where cold digital ads simply don't.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">03</div>
+          <div class="feat-name" data-en="Contemporary High-End Fashion" data-ko="컨템포러리 하이엔드 패션" data-es="Moda Contemporánea de Alto Nivel" data-ja="コンテンポラリー・ハイエンドファッション" data-de="Zeitgenössische High-End-Mode">Contemporary High-End Fashion</div>
+          <div class="feat-desc" data-en="Korea sets trends — it doesn't just follow them. Korean consumers are globally ahead in fashion awareness, and their appetite for contemporary high-end labels is serious purchasing power. We understand how style-driven culture in Korea works, and how to turn that into real affiliate revenue for global fashion brands." data-ko="한국은 트렌드를 따르는 것이 아니라 만들어냅니다. 한국 소비자는 패션 인식에서 글로벌 최전선에 있으며, 컨템포러리 하이엔드 브랜드에 대한 구매력은 실질적입니다. 한국의 스타일 중심 문화가 어떻게 작동하는지, 그리고 이를 어떻게 글로벌 패션 브랜드의 실제 어필리에이트 매출로 전환하는지 저희는 알고 있습니다." data-es="Corea marca tendencias — no solo las sigue. Los consumidores coreanos están a la vanguardia global en conciencia de moda, y su apetito por marcas contemporáneas de alto nivel es un poder adquisitivo real." data-ja="韓国はトレンドに従うのではなく、作り出します。韓国の消費者はファッション感度において世界の最前線にいます。私たちはそのスタイル文化を理解し、グローバルファッションブランドの実際の収益に変える方法を知っています。" data-de="Korea setzt Trends — es folgt ihnen nicht nur. Koreanische Verbraucher sind global führend im Modebewusstsein. Wir verstehen die stilgetriebene Kultur Koreas und wissen, wie man sie in Affiliate-Umsätze für globale Modemarken umwandelt.">Korea sets trends — it doesn't just follow them. Korean consumers are globally ahead in fashion awareness, and their appetite for contemporary high-end labels is serious purchasing power. We understand how style-driven culture in Korea works, and how to turn that into real affiliate revenue for global fashion brands.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec" id="contact">
+    <div class="cta-title" data-en="Ready to enter Korea?" data-ko="한국 시장 진출할 준비됐나요?" data-es="¿Listo para entrar a Corea?" data-ja="韓国市場に参入する準備はできていますか？" data-de="Bereit, den koreanischen Markt zu betreten?">Ready to enter Korea?</div>
+    <div class="cta-sub" data-en="Google won't get you there. We will." data-ko="구글은 당신을 여기까지 데려다주지 않습니다. 저희가 합니다." data-es="Google no te llevará allí. Nosotros sí." data-ja="Googleではたどり着けない。私たちならできます。" data-de="Google bringt dich nicht dorthin. Wir schon.">Google won't get you there. We will.</div>
+    <a href="mailto:passivel.lab.official@gmail.com" class="btn-fill" data-en="Start the Conversation" data-ko="문의 시작하기" data-es="Iniciar Conversación" data-ja="お問い合わせ" data-de="Gespräch beginnen">Start the Conversation</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">PASSIVELAB</div>
+    <div class="footer-copy">© 2017–2026 PASSIVELAB Inc. All rights reserved.</div>
+  </footer>
+
+</div>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]').classList.add('active');
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val) el.innerHTML = val;
+  });
+  const map = {ko:'ko', es:'es', ja:'ja', de:'de'};
+  document.documentElement.lang = map[lang] || 'en';
+}
+
+// ── NETWORK GRAPH ──
+(function(){
+  const canvas=document.getElementById('netCanvas');
+  const ctx=canvas.getContext('2d');
+  const tip=document.getElementById('netTooltip');
+  let W,H,mouse={x:-9999,y:-9999},af=0;
+
+  const all_brands=[
+    {name:'Marriott',cat:'Hospitality'},{name:'Hilton',cat:'Hospitality'},
+    {name:'Accor',cat:'Hospitality'},{name:'AccorPlus',cat:'Membership'},
+    {name:'KLM',cat:'Aviation'},{name:'KAYAK',cat:'Travel Tech'},
+    {name:'GetYourGuide',cat:'Experience'},{name:'CruiseDirect',cat:'Cruise'},
+    {name:'StubHub',cat:'Ticketing'},{name:'AirHelp',cat:'Travel Aid'},
+    {name:'NordVPN',cat:'Cybersecurity'},{name:'Surfshark',cat:'Cybersecurity'},
+    {name:'Apple',cat:'Technology'},{name:'BigBus',cat:'Sightseeing'},
+    {name:'City-Sightseeing',cat:'Sightseeing'},
+    {name:'Net-a-Porter',cat:'Fashion'},{name:'Farfetch',cat:'Fashion'},
+    {name:'Mytheresa',cat:'Fashion'},{name:'ASOS',cat:'Fashion'},
+    {name:'Nordstrom',cat:'Fashion'},{name:'Saks Fifth Ave',cat:'Fashion'},
+    {name:'Free People',cat:'Fashion'},{name:'Revolve',cat:'Fashion'},
+    {name:"Macy's",cat:'Retail'},{name:'Bloomingdales',cat:'Retail'},
+    {name:'Charlotte Tilbury',cat:'Beauty'},{name:'Amazon Fashion',cat:'Fashion'},
+    {name:'Anthropologie',cat:'Fashion'},{name:'Urban Outfitters',cat:'Fashion'},
+    {name:'Matches Fashion',cat:'Fashion'},{name:'Browns Fashion',cat:'Fashion'},
+    {name:'Booking.com',cat:'Travel'},{name:'Expedia',cat:'Travel'},
+    {name:'Agoda',cat:'Travel'},{name:'Viator',cat:'Experience'},
+    {name:'Hotels.com',cat:'Travel'},{name:'Tripadvisor',cat:'Travel'},
+    {name:'Klook',cat:'Experience'},{name:'Skyscanner',cat:'Travel'},
+    {name:'Trainline',cat:'Travel'},{name:'Hertz',cat:'Rental'},
+    {name:'Rentalcars',cat:'Rental'},{name:'Airbnb',cat:'Travel'},
+    {name:'G Adventures',cat:'Travel'},{name:'Contiki',cat:'Travel'},
+    {name:'TUI',cat:'Travel'},{name:'Intrepid Travel',cat:'Travel'},
+    {name:'Silversea',cat:'Cruise'},{name:'Regent Seven Seas',cat:'Cruise'},
+    {name:'Princess Cruises',cat:'Cruise'},{name:'MSC Cruises',cat:'Cruise'},
+    {name:'Qatar Airways',cat:'Aviation'},{name:'Emirates',cat:'Aviation'},
+    {name:'Singapore Air',cat:'Aviation'},{name:'Cathay Pacific',cat:'Aviation'},
+    {name:'Hyatt',cat:'Hospitality'},{name:'IHG',cat:'Hospitality'},
+    {name:'Radisson',cat:'Hospitality'},{name:'Best Western',cat:'Hospitality'},
+    {name:'Wix',cat:'SaaS'},{name:'Squarespace',cat:'SaaS'},
+    {name:'Shopify',cat:'SaaS'},{name:'HubSpot',cat:'SaaS'},
+    {name:'Semrush',cat:'SaaS'},{name:'Canva',cat:'SaaS'},
+    {name:'Notion',cat:'SaaS'},{name:'1Password',cat:'Security'},
+    {name:'Dashlane',cat:'Security'},{name:'ExpressVPN',cat:'Security'},
+  ];
+
+  let center,nodes,ghosts;
+
+  function build(){
+    const wrap=canvas.parentElement;
+    W=canvas.width=wrap.clientWidth;
+    H=canvas.height=wrap.clientHeight;
+    const cx=W/2,cy=H/2;
+    center={name:'PASSIVELAB',x:cx,y:cy,isCenter:true};
+    const total=all_brands.length;
+    const golden=Math.PI*(3-Math.sqrt(5));
+    const maxR=Math.min(W,H)*0.46;
+    const minR=Math.min(W,H)*0.11;
+    nodes=all_brands.map(function(b,i){
+      const r=minR+Math.sqrt((i+1)/total)*(maxR-minR);
+      const a=i*golden;
+      return Object.assign({},b,{
+        x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r,
+        baseX:cx+Math.cos(a)*r,baseY:cy+Math.sin(a)*r,
+        pulse:Math.random()*Math.PI*2,
+        fs:10+Math.random()*4,
+        alpha:0.45+Math.random()*0.45,
+      });
+    });
+    ghosts=Array.from({length:240},function(){
+      const a=Math.random()*Math.PI*2;
+      const r=40+Math.random()*(Math.min(W,H)*0.52);
+      return{bx:cx+Math.cos(a)*r,by:cy+Math.sin(a)*r,x:0,y:0,
+        r:0.6+Math.random()*1.8,p:Math.random()*Math.PI*2,a:0.08+Math.random()*0.15};
+    });
+  }
+
+  function getHov(){
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i];
+      ctx.font='500 '+n.fs+'px -apple-system,Helvetica Neue,Arial,sans-serif';
+      var w=ctx.measureText(n.name).width;
+      if(mouse.x>n.x-w/2-6&&mouse.x<n.x+w/2+6&&mouse.y>n.y-n.fs/2-4&&mouse.y<n.y+n.fs/2+4)return n;
+    }
+    return null;
+  }
+
+  function ln(x1,y1,x2,y2,alpha){
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+    ctx.strokeStyle='rgba(0,0,0,'+alpha+')';ctx.lineWidth=0.35;ctx.stroke();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    var hov=getHov();
+    ghosts.forEach(function(g){
+      g.x=g.bx+Math.sin(af*0.005+g.p)*5;g.y=g.by+Math.cos(af*0.007+g.p)*4;
+      ctx.beginPath();ctx.arc(g.x,g.y,g.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,0,0,'+g.a+')';ctx.fill();
+    });
+    nodes.forEach(function(n){ln(center.x,center.y,n.x,n.y,n===hov?0.15:0.03);});
+    for(var i=0;i<nodes.length;i++)for(var j=i+1;j<nodes.length;j++){
+      var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y;
+      if(Math.sqrt(dx*dx+dy*dy)<90)ln(nodes[i].x,nodes[i].y,nodes[j].x,nodes[j].y,0.03);
+    }
+    nodes.forEach(function(n){
+      var h=n===hov,fs=h?n.fs+1:n.fs;
+      ctx.font=(h?'600 ':'400 ')+fs+'px -apple-system,Helvetica Neue,Arial,sans-serif';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillStyle=h?'#000':'rgba(17,17,17,'+n.alpha+')';
+      ctx.fillText(n.name,n.x,n.y);
+      if(h){var w=ctx.measureText(n.name).width;
+        ctx.beginPath();ctx.moveTo(n.x-w/2,n.y+fs/2+3);ctx.lineTo(n.x+w/2,n.y+fs/2+3);
+        ctx.strokeStyle='#111';ctx.lineWidth=0.8;ctx.stroke();}
+    });
+    ctx.font='700 16px -apple-system,Helvetica Neue,Arial,sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillStyle='#111';ctx.fillText(center.name,center.x,center.y);
+    var cw=ctx.measureText(center.name).width;
+    ctx.beginPath();ctx.moveTo(center.x-cw/2,center.y+11);ctx.lineTo(center.x+cw/2,center.y+11);
+    ctx.strokeStyle='rgba(0,0,0,0.35)';ctx.lineWidth=0.8;ctx.stroke();
+    nodes.forEach(function(n){
+      n.x=n.baseX+Math.sin(af*0.008+n.pulse)*3.5;
+      n.y=n.baseY+Math.cos(af*0.010+n.pulse)*2.5;
+    });
+    if(hov&&hov.cat){
+      tip.textContent=hov.cat;tip.style.opacity='1';
+      var tx=mouse.x+14,ty=mouse.y-28;
+      if(tx+160>W)tx=mouse.x-174;if(ty<0)ty=mouse.y+14;
+      tip.style.left=tx+'px';tip.style.top=ty+'px';
+    } else tip.style.opacity='0';
+    af++;requestAnimationFrame(draw);
+  }
+
+  function setM(ex,ey){var r=canvas.getBoundingClientRect();mouse.x=ex-r.left;mouse.y=ey-r.top;}
+  canvas.addEventListener('mousemove',function(e){setM(e.clientX,e.clientY);});
+  canvas.addEventListener('touchmove',function(e){e.preventDefault();setM(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
+  canvas.addEventListener('touchstart',function(e){setM(e.touches[0].clientX,e.touches[0].clientY);});
+  canvas.addEventListener('touchend',function(){mouse.x=-9999;tip.style.opacity='0';});
+  window.addEventListener('resize',build);
+  build();draw();
+})();
+</script>
+
+</body>
+</html>
