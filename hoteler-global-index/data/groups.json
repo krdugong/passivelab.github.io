@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Marriott",
+    "loyalty": "Marriott Bonvoy",
+    "hotels": "10,000+",
+    "coverage": "148개 국가·지역",
+    "source": "Marriott 공식 기업 정보",
+    "source_url": "https://www.marriott.com/ko/marriott/aboutmarriott.mi"
+  },
+  {
+    "name": "Hilton",
+    "loyalty": "Hilton Honors",
+    "hotels": "9,260",
+    "coverage": "144개 국가·지역",
+    "source": "Hilton Q1 2026 Fact Sheet",
+    "source_url": "https://stories.hilton.com/"
+  },
+  {
+    "name": "Accor",
+    "loyalty": "ALL",
+    "hotels": "5,800+",
+    "coverage": "110+ 국가",
+    "source": "Accor Global Presence",
+    "source_url": "https://group.accor.com/en/group/global-presence-map"
+  },
+  {
+    "name": "IHG",
+    "loyalty": "IHG One Rewards",
+    "hotels": "7,109",
+    "coverage": "글로벌",
+    "source": "IHG PLC 2026",
+    "source_url": "https://www.ihgplc.com/"
+  },
+  {
+    "name": "Hyatt",
+    "loyalty": "World of Hyatt",
+    "hotels": "1,500+",
+    "coverage": "83개 국가",
+    "source": "Hyatt 2026 Newsroom",
+    "source_url": "https://newsroom.hyatt.com/"
+  },
+  {
+    "name": "GHA",
+    "loyalty": "GHA DISCOVERY",
+    "hotels": "1,000",
+    "coverage": "100개 국가",
+    "source": "GHA 공식 About",
+    "source_url": "https://www.ghadiscovery.com/about-gha"
+  }
+]
