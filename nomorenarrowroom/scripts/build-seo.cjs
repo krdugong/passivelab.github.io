@@ -59,8 +59,11 @@ function listPage({route,title,description,h1,eyebrow,lead,opening,list,trail,ma
 }
 function hotelPage(h) {
   const route=itemRoute(h), area=h.area, city='후쿠오카';
-  const title=`${h.name} 객실 크기 ${fmt(h.minRoom2Pax)}㎡·대욕장 | NoMoreNarrowRoom`;
-  const description=`${h.name}의 2인 기본 객실 ${fmt(h.minRoom2Pax)}㎡, ${bathText(h)}. ${h.reviewNote || '역 접근성과 객실 선택 기준을 확인하세요.'} 객실 타입과 자료 확인일을 비교하세요.`;
+  const title=`${h.name} ${fmt(h.minRoom2Pax)}㎡·대욕장`;
+  const descriptionPrefix=`${h.name}: 기본 객실 ${fmt(h.minRoom2Pax)}㎡, ${bathText(h)}. `;
+  const description=descriptionPrefix.length + (h.reviewNote || '').length <= 80
+    ? descriptionPrefix + h.reviewNote
+    : `${h.name}: ${fmt(h.minRoom2Pax)}㎡ 객실과 대욕장·이동 동선 비교.`;
   const areaHotels=hotels.filter(x=>x.area===area&&x.id!==h.id).sort((a,b)=>Math.abs((a.minRoom2Pax||0)-(h.minRoom2Pax||0))-Math.abs((b.minRoom2Pax||0)-(h.minRoom2Pax||0))).slice(0,3);
   const sources=`<ul class="source-list"><li>면적·대욕장 확인 기록: ${esc(h.verification)} · <time datetime="${h.verifiedAt}">${h.verifiedAt}</time></li>${h.officialSourceUrl?`<li><a href="${esc(h.officialSourceUrl)}" rel="noopener" target="_blank">객실 자료 ↗</a></li>`:''}${h.bathSourceUrl?`<li><a href="${esc(h.bathSourceUrl)}" rel="noopener" target="_blank">대욕장 자료 ↗</a></li>`:''}${h.reviewSourceUrl?`<li><a href="${esc(h.reviewSourceUrl)}" rel="noopener" target="_blank">접근성·체감 메모에 참고한 후기 ↗</a> · ${esc(h.reviewCheckedAt)}</li>`:''}</ul>`;
   const bathCopy = h.bath ? `기록된 시설은 ${h.bathLabel}입니다. 이용 조건과 운영 시간은 예약 전에 확인하세요.` : `현재 자료에는 ${h.bathLabel}으로 기록돼 있습니다. 대욕장이 중요하다면 같은 지역 호텔도 비교하세요.`;
@@ -72,14 +75,14 @@ function write(route,html) {const file=path.join(root,route,'index.html');fs.mkd
 const pages=[];
 function add(config){write(config.route,listPage(config));pages.push([config.route,newest(config.list)]);}
 const trail=(route,name)=>[['index.html','홈'],['fukuoka/','후쿠오카'],[route,name]];
-add({route:'fukuoka/',title:'후쿠오카 호텔 방 크기·대욕장 비교 30곳 | NoMoreNarrowRoom',description:'후쿠오카 호텔 30곳의 2인 기본 객실 면적과 대욕장 여부를 비교합니다. 하카타·텐진·나카스 위치, 캐리어 공간, 역 접근성 메모를 확인하세요.',h1:'후쿠오카 호텔 방 크기·대욕장 비교',eyebrow:'FUKUOKA HOTEL GUIDE',lead:'하카타·텐진·나카스 호텔 30곳의 기본 객실 면적과 대욕장을 한눈에 살펴보세요.',opening:'하카타는 철도와 공항 이동, 텐진은 쇼핑과 시내 동선, 나카스는 두 지역 사이 이동을 고려할 때 살펴볼 지역입니다. 객실 면적과 대욕장 여부를 먼저 좁힌 뒤 실제 위치를 지도에서 확인하세요.',list:hotels,trail:[['index.html','홈'],['fukuoka/','후쿠오카']],map:true});
+add({route:'fukuoka/',title:'후쿠오카 호텔 30곳 방 크기·대욕장 비교',description:'후쿠오카 호텔 30곳의 기본 객실 면적과 대욕장을 비교합니다. 하카타·텐진·나카스 위치, 캐리어 공간, 역 접근성 메모를 확인하세요.',h1:'후쿠오카 호텔 방 크기·대욕장 비교',eyebrow:'FUKUOKA HOTEL GUIDE',lead:'하카타·텐진·나카스 호텔 30곳의 기본 객실 면적과 대욕장을 한눈에 살펴보세요.',opening:'하카타는 철도와 공항 이동, 텐진은 쇼핑과 시내 동선, 나카스는 두 지역 사이 이동을 고려할 때 살펴볼 지역입니다. 객실 면적과 대욕장 여부를 먼저 좁힌 뒤 실제 위치를 지도에서 확인하세요.',list:hotels,trail:[['index.html','홈'],['fukuoka/','후쿠오카']],map:true});
 for (const [area,en,opening] of [['하카타','hakata','하카타역과 버스터미널을 중심으로 이동하는 일정이라면 역 접근성 메모를 먼저 보세요. 역 가까운 호텔도 13~15㎡ 객실이 있어 짐이 많다면 면적을 함께 비교해야 합니다.'],['텐진','tenjin','쇼핑과 식사 동선을 우선한다면 텐진 호텔을 살펴보세요. 텐진 중심부 접근성과 객실 면적, 대욕장 여부를 함께 비교하면 선택이 쉬워집니다.'],['나카스','nakasu','하카타와 텐진 사이를 오가는 일정이라면 나카스 호텔을 살펴보세요. 대욕장 여부와 기본 객실 면적의 차이를 먼저 비교하고 위치를 확인하세요.']]) {
  const list=hotels.filter(h=>h.area===area),route='fukuoka/'+en+'/';
- add({route,title:`${area} 호텔 객실 크기·대욕장 비교 ${list.length}곳 | NoMoreNarrowRoom`,description:`${area} 호텔 ${list.length}곳의 2인 기본 객실 면적, 캐리어 공간, 대욕장 여부와 역 접근성 메모를 비교하세요.`,h1:`${area} 호텔 객실 크기 비교`,eyebrow:en.toUpperCase()+' AREA GUIDE',lead:`${area} 호텔 ${list.length}곳에서 좁은 객실을 피하고 원하는 온욕시설을 찾아보세요.`,opening,list,trail:trail(route,area),map:true});
+ add({route,title:`${area} 호텔 ${list.length}곳 객실 크기·대욕장`,description:`${area} 호텔 ${list.length}곳의 기본 객실 면적, 캐리어 공간, 대욕장 여부와 역 접근성 메모를 비교하세요.`,h1:`${area} 호텔 객실 크기 비교`,eyebrow:en.toUpperCase()+' AREA GUIDE',lead:`${area} 호텔 ${list.length}곳에서 좁은 객실을 피하고 원하는 온욕시설을 찾아보세요.`,opening,list,trail:trail(route,area),map:true});
 }
 for(const [sub,name,predicate,opening] of [['20sqm','20㎡ 이상',h=>h.minRoom2Pax>=20,'2인 여행에서 캐리어를 펼칠 공간이 중요하다면 20㎡ 이상부터 비교해 보세요. 실제 동선은 객실 배치와 침대 크기에 따라 달라집니다.'],['bath','대욕장 있는',h=>h.bath,'하루 끝에 대욕장을 이용하고 싶다면 시설이 확인된 호텔을 모아 비교하세요. 운영 시간과 이용 조건은 호텔마다 다릅니다.']]){
  const list=hotels.filter(predicate),route='fukuoka/'+sub+'/';
- add({route,title:`후쿠오카 ${name} 호텔 ${list.length}곳 비교 | NoMoreNarrowRoom`,description:`후쿠오카 ${name} 호텔 ${list.length}곳의 기본 객실 면적, 지역과 역 접근성 메모를 비교합니다. 캐리어 공간과 대욕장 조건을 함께 확인하세요.`,h1:`후쿠오카 ${name} 호텔`,eyebrow:'FUKUOKA BY NEED',lead:`여행 조건에 맞는 후쿠오카 호텔 ${list.length}곳을 모았습니다.`,opening,list,trail:trail(route,name+' 호텔'),map:false});
+ add({route,title:`후쿠오카 ${name} 호텔 ${list.length}곳`,description:`후쿠오카 ${name} 호텔 ${list.length}곳의 기본 객실 면적과 지역, 역 접근성 메모를 비교합니다.`,h1:`후쿠오카 ${name} 호텔`,eyebrow:'FUKUOKA BY NEED',lead:`여행 조건에 맞는 후쿠오카 호텔 ${list.length}곳을 모았습니다.`,opening,list,trail:trail(route,name+' 호텔'),map:false});
 }
 for (const h of hotels){const route=itemRoute(h);write(route,hotelPage(h));pages.push([route,h.verifiedAt]);}
 const xmlEsc = s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
